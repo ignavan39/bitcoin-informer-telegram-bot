@@ -4,7 +4,11 @@
   "main": "index.js",
   "repository": "https://github.com/kitt3911/bitcoin-informer-telegram-bot",
   "scripts": {
-    "start": "NODE_ENV=development && nodemon index.js"
+    "start:dev": "NODE_ENV=development && nodemon index.js",
+    "start": "pm2 start index.js -i max",
+    "stop": "pm2 stop all",
+    "restart": "pm2 restart all",
+    "reload": "pm2 reload all"
   },
   "author": "kitt3911 <ivanignatenko28@gmail.com>",
   "license": "MIT",

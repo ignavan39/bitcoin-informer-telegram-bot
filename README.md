@@ -4,8 +4,23 @@
 ### How to start ?
 
 Clone this repo or fork
+```
+$ yarn
+```
+or 
+```
+$ npm install
+```
+
+#### Development :
+```
+$ yarn start:dev
+```
+
+#### Production :
 
 ```
-1.yarn
-2.yarn start
+sh deploy.sh
+$ yarn start
 ```
+
