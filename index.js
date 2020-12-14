@@ -1,8 +1,9 @@
 const express = require('express');
-const app = express();
-const PORT = process.env.PORT || 8080;
-const {bot_token} = require("./config/config")
+const {bot} = require("./config/config")
 
-app.listen(PORT, () => {
-    console.log(`Server startred on port ${PORT}`)
-});
+
+bot.start((ctx) => ctx.reply('Welcome'))
+bot.help((ctx) => ctx.reply('Send me a sticker'))
+bot.on('sticker', (ctx) => ctx.reply('👍'))
+bot.hears('hi', (ctx) => ctx.reply('Hey there'))
+bot.launch()
