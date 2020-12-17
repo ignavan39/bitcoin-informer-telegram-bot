@@ -1,19 +1,17 @@
-/*
-import {sendMessages} from "./util/sendMessage";
-
 const {bot} = require("./config/config")
-const express = require("express");
-const {mainLoop} = require("./controllers/controllers");
+const {mainLoop} = require("./controllers/setTitleControllers");
+const { CronJob } = require("cron");
+const { getAllCoins, getAllVsCurrencies } = require("./servicies/getInfo");
+//59 10 * * *
+const job = new CronJob('26 12 * * *', async ()=>{
+    await getAllCoins()
+    await getAllVsCurrencies()
+})
 
-const app = express();
-
-/*
 bot.hears(/(\w+) vs (\w+) to (-\d+)/, ctx => {
     mainLoop(ctx.match[1], ctx.match[2], ctx.match[3])
 })
 bot.launch()
-*/
 
-/*
-sendMessages('bitcoin', 'usd', -455245562);
-*/
+job.start()
+
