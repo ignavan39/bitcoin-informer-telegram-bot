@@ -24,6 +24,7 @@ const getAllvsCurrencies = async () => {
     if(!allVsCurrencies){
         return await fetchAllvsCurrencies().then(res => client.set(ALL_VS_CURRENCIES,JSON.stringify(res),redis.print))
     }
+    return JSON.parse(allVsCurrencies)
 }
 
 const currencyNameToCoin = async (currency_name) => {
