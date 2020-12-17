@@ -18,7 +18,6 @@ const getAllCoins = async () => {
         client.set(ALL_COINS, JSON.stringify(res))
         return res
     }
-    console.log(`METHOD: ${allCoinsRedis}`)
     return JSON.parse(allCoinsRedis)
 }
 

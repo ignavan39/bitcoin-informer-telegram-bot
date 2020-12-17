@@ -8,7 +8,8 @@
     "start": "pm2 start index.js -i max",
     "stop": "pm2 stop all",
     "restart": "pm2 restart all",
-    "reload": "pm2 reload all"
+    "reload": "pm2 reload all",
+    "test":"jest"
   },
   "author": "kitt3911 <ivanignatenko28@gmail.com>",
   "license": "MIT",
@@ -22,6 +23,7 @@
     "telegraf": "^3.38.0"
   },
   "devDependencies": {
+    "jest": "^26.6.3",
     "nodemon": "^2.0.6"
   }
 }
