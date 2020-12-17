@@ -25,13 +25,26 @@ $ yarn start
 ```
 
 
-### API 
+### Test
 
-utils/filterByCoinName:
-* currencyNameToCoin(currency_name) : coin id
+```
+yarn test
+```
 
-utils/getCurrency:
-* getCurrency = async (currency_id,vsCurrency) : returns the current price of the currency from the ID(currency_id) versus vsCurrency
+### Reload 
 
-controllers/controller.js
-* mainLoop(coinName,vsCurrency)
+```
+yarn reload
+```
+
+### Stop
+
+```
+yarn stop
+```
+
+### Restart
+
+```
+yarn restart
+```

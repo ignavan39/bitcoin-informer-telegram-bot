@@ -19,7 +19,6 @@ test('Check exsist in all crypto coins', async () => {
     expect(data).toBe(true)
 })
 
-
 test('check save file and read',async ()=>{
     data = await getAllCoins()
     saveData(ALL_COINS,data)
