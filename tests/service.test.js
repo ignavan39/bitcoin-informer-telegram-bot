@@ -1,6 +1,9 @@
 
+const { saveData, getData } = require("../common/savedata");
 const { checkInAllCoins,
     checkInVsCurrency } = require("../servicies/checkExsistCurrency");
+const { getAllCoins } = require("../servicies/getInfo");
+const { ALL_COINS } = require("../types/keys");
 
 
 test('Check exsist vs currency', async () => {
@@ -14,4 +17,11 @@ test('Check vs currency BAD',async () => {
 test('Check exsist in all crypto coins', async () => {
     const data = await checkInAllCoins('bitcoin')
     expect(data).toBe(true)
+})
+
+test('check save file and read',async ()=>{
+    data = await getAllCoins()
+    saveData(ALL_COINS,data)
+    expect(JSON.parse(getData(ALL_COINS))).toEqual(data)
+    
 })

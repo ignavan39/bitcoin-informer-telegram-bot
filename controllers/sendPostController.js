@@ -1,7 +1,7 @@
 const {telegram} = require("../config/config");
 
 const sendPostController = async (info, vsCurrency, chatId) => {
-    let messageId = await telegram.sendMessage(chatId,
+    return await telegram.sendMessage(chatId,
         `${info.name[0].toUpperCase() + info.name.slice(1)} Price $${info.price}
 Market Cap $${info.allInfo.market_cap[vsCurrency]} 
 Trading Volume $${info.allInfo.total_volume[vsCurrency]}      
@@ -12,7 +12,6 @@ $${info.allInfo.low_24h[vsCurrency]}/$${info.allInfo.high_24h[vsCurrency]}
 7d Low / 7d High 
 $${info.allInfo.low_24h[vsCurrency]}/$${info.allInfo.high_24h[vsCurrency]}  
 `).then(ctx => (ctx.message_id))
-    return messageId
 
 }
 
