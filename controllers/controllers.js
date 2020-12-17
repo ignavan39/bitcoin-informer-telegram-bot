@@ -1,8 +1,12 @@
+/**
 const {telegram} = require("../config/config");
 const {getCurrency} = require("../util/getCurrency");
 const {currencyNameToCoin} = require("../util/filterByCoinName")
 
 const mainLoop = async (currency, vs_currency, chatId) => {
+
+
+
     let old_currency = await getCurrency(await currencyNameToCoin(currency), vs_currency);
     let current_currency = old_currency;
     let percentage = current_currency / old_currency;
@@ -30,4 +34,4 @@ const mainLoop = async (currency, vs_currency, chatId) => {
 };
 
 module.exports = {mainLoop}
-
+**/
