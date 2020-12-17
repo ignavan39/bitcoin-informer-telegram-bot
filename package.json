@@ -9,7 +9,7 @@
     "stop": "pm2 stop all",
     "restart": "pm2 restart all",
     "reload": "pm2 reload all",
-    "test":"jest"
+    "test": "jest"
   },
   "author": "kitt3911 <ivanignatenko28@gmail.com>",
   "license": "MIT",

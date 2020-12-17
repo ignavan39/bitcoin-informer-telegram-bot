@@ -1,52 +1,64 @@
-const { telegram } = require("../config/config");
-const { getCurrency } = require("../servicies/getCurrency");
-const { currencyNameToCoin } = require("../servicies/getInfo")
+const getIdCurrency = require("../servicies/getIdCurrency");
+const sendPostController = require("./sendPostController");
+const {telegram} = require("../config/config");
+const {getCurrency} = require("../servicies/getCurrency");
 
 const mainLoop = async (currency, vs_currency, chatId) => {
 
-    // market_data->price_change_percentage_24h_in_currency->usd
-
-    let marketData = await getCurrency(await currencyNameToCoin(currency), vs_currency)
+    let marketData = await getCurrency(await getIdCurrency(currency), vs_currency)
+    chatId = parseInt(chatId)
     if (!marketData) {
-        telegram.sendMessage(`problem in command : unknown `)
+        await telegram.sendMessage(`Некоректное название валют`, chatId)
         return;
     }
 
     let percentage = marketData.percentage
     let currentCurrency = marketData.price
-
-    chatId = parseInt(chatId)
-    console.log(`${currency} ${vs_currency} ${chatId}`)
-
+    let previousMessageID = -1
+    let messageID = -1
     let timer = 0
+    let prevPrice = -1
 
     setInterval(async () => {
-        if (timer === 12) {
-            timer = 0
 
-        }
-        marketData = await getCurrency(await currencyNameToCoin(currency), vs_currency).price;
+        marketData = await getCurrency(await getIdCurrency(currency), vs_currency);
+        percentage = marketData.percentage
+        currentCurrency = marketData.price
+
         if (!marketData) {
             clearInterval(this)
             return;
         }
-        console.log(`${marketData}`)
 
-        percentage = ((currentCurrency / oldCurrency - 1) * 100).toFixed(2);
-        if (percentage > 0) {
-            await telegram.sendMessage(chatId,
-                `🟢 ${currency.toUpperCase()} ${currentCurrency}$ ⬆️ (+${percentage}%)`)
-            await telegram.setChatTitle(chatId,
-                `🟢 ${currency.toUpperCase()} ${currentCurrency}$ ⬆️ (${percentage}%)`)
-        } else {
-            await telegram.sendMessage(chatId,
-                `🟢 ${currency.toUpperCase()} ${currentCurrency}$ ⬆️ (${percentage}%)`)
-            await telegram.setChatTitle(chatId,
-                `🔴 ${currency.toUpperCase()} ${currentCurrency}$ ⬇️️ ( ${percentage}%)`)
+        previousMessageID = messageID
+
+        messageID = await sendPostController(marketData, vs_currency, chatId)
+
+        if (previousMessageID !== -1) {
+            await telegram.deleteMessage(chatId, previousMessageID)
         }
 
-        timer++
+        timer++;
+        if (timer === 12) {
+            timer = 0
+            if (percentage > 0) {
+                await telegram.setChatTitle(chatId, `🟢 ${currency.toUpperCase()} ${currentCurrency}$ ⬆️ (+${percentage}%|24h)`)
+                    .then(() => {
+                        if (prevPrice !== currentCurrency) {
+                            telegram.deleteMessage(chatId, messageID + 1)
+                        }
+                    })
+            } else {
+                await telegram.setChatTitle(chatId, `🔴 ${currency.toUpperCase()} ${currentCurrency}$ ⬇️️ (-${percentage}%|24h)`)
+                    .then(() => {
+                        if (prevPrice !== currentCurrency) {
+                            telegram.deleteMessage(chatId, messageID + 1)
+                        }
+                    })
+            }
+            prevPrice = currentCurrency
+        }
     }, 5000);
 };
 
-module.exports = { mainLoop }
+module.exports = {mainLoop}

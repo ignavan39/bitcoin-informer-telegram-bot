@@ -1,8 +1,8 @@
 const fs = require('fs')
 
 const saveData = (name, data) => {
-     fs.writeFileSync(name + '.json', JSON.stringify(data), 'utf-8', (err) => {
-        if(err){
+    fs.writeFileSync(name + '.json', JSON.stringify(data), 'utf-8', (err) => {
+        if (err) {
             console.log(err)
         }
         return;
@@ -10,9 +10,9 @@ const saveData = (name, data) => {
 }
 
 const getData = (name) => {
-    try{
+    try {
         return fs.readFileSync(name + '.json', 'utf8')
-    } catch (err){
+    } catch (err) {
         return null
     }
 }
