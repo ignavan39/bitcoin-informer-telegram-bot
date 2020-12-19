@@ -14,8 +14,10 @@ const job = new CronJob('37 18 * * *', async () => {
     saveData(ALL_VS_CURRENCIES, res)
 })
 
-bot.hears(/(\w+) vs (\w+) to (-\d+)/, ctx => {
-    mainLoop(ctx.match[1], ctx.match[2], ctx.match[3])
+bot.hears(/(\w+) vs (\w+)/, ctx => {
+    if(ctx.message.from.id === parseInt(process.env["ADMIN_ID"])){
+        mainLoop(ctx.match[1], ctx.match[2], ctx.chat.id)
+    }
 })
 
 bot.launch()
