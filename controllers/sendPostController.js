@@ -5,7 +5,7 @@ const sendPostController = async (info, vsCurrency, chatId) => {
         .sendMessage(
             chatId,
             `${info.name[0].toUpperCase() + info.name.slice(1)} Price $${info.price}
-    Market Cap $${info.allInfo.market_cap[vsCurrency]} 
+Market Cap $${info.allInfo.market_cap[vsCurrency]} 
 Trading Volume $${info.allInfo.total_volume[vsCurrency]}      
 Market Cap Rank #${info.allInfo.market_cap_rank}
 ——————————————

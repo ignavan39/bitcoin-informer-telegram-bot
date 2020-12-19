@@ -55,12 +55,13 @@ const mainLoop = async (currency, vs_currency, chatId) => {
                 let newTitle = `🟢 ${currency.toUpperCase()} ${currentCurrency}$ ⬆️ (+${percentage}%|24h)`
                 if(title !== newTitle){
                     await telegram.setChatTitle(chatId, newTitle)
-                        .then(() => telegram.deleteMessage(chatId, messageID + 1))
+                        .then(() => telegram.deleteMessage(chatId, messageID+1))
                 }
             } else {
                 let newTitle = `🔴 ${currency.toUpperCase()} ${currentCurrency}$ ⬇️️(${percentage}%|24h)`
                 if(title !== newTitle){
                     await telegram.setChatTitle(chatId, newTitle)
+                        .then(() => telegram.deleteMessage(chatId, messageID+1))
                 }
             }
         }
