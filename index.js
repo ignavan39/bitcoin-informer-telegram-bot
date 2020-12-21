@@ -5,7 +5,7 @@ const {saveData} = require("./common/savedata");
 const {bot} = require("./config/config")
 const {mainLoop} = require("./controllers/setTitleControllers");
 const {CronJob} = require("cron");
-
+const {adminId} = require('./config/config')
 //59 10 * * *
 const job = new CronJob('37 18 * * *', async () => {
     let res = await fetchAllCoins()
@@ -15,8 +15,10 @@ const job = new CronJob('37 18 * * *', async () => {
 })
 
 bot.hears(/(\w+) vs (\w+)/, ctx => {
-    if(ctx.message.from.id === parseInt(process.env["ADMIN_ID"])){
-        mainLoop(ctx.match[1], ctx.match[2], ctx.chat.id)
+
+    let chatId =  ctx.update.message.forward_from_chat.id
+    if(ctx.message.from.id === adminId ){
+        mainLoop(ctx.match[1], ctx.match[2], chatId)
     }
 })
 
