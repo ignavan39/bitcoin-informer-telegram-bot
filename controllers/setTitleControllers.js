@@ -4,21 +4,21 @@ const {telegram} = require("../config/config");
 const {getCurrency} = require("../servicies/getCurrency");
 const {checkInAllCoins, checkInVsCurrency} = require("../servicies/checkExsistCurrency")
 
-const mainLoop = async (currency, vs_currency, chatId) => {
+const mainLoop = async (currency, vs_currency, channelId) => {
     let hasCurrency = await checkInAllCoins(currency)
     if(!hasCurrency){
-        await telegram.sendMessage(chatId, 'Неверное название криптовалюты')
+        await telegram.sendMessage(channelId, 'Неверное название криптовалюты')
         return;
     }
     let hasVsCurrency = await checkInVsCurrency(vs_currency)
     if(!hasVsCurrency){
-        await telegram.sendMessage(chatId, 'Неверно введено название второй валюты')
+        await telegram.sendMessage(channelId, 'Неверно введено название второй валюты')
         return;
     }
 
     let marketData = await getCurrency(await getIdCurrency(currency), vs_currency)
     if(!marketData){
-        await telegram.sendMessage(chatId, 'Не удалось сделать запрос к сервису')
+        await telegram.sendMessage(channelId, 'Не удалось сделать запрос к сервису')
         return
     }
 
@@ -31,38 +31,31 @@ const mainLoop = async (currency, vs_currency, chatId) => {
     setInterval(async () => {
         marketData = await getCurrency(await getIdCurrency(currency), vs_currency);
         percentage = marketData.percentage.toFixed(2)
-        currentCurrency = marketData.price.toFixed(2)
+        currentCurrency = marketData.price
 
         if (!marketData) {
-            await telegram.sendMessage(chatId, 'Не удалось сделать запрос к сервису')
+            await telegram.sendMessage(channelId, 'Не удалось сделать запрос к сервису')
             clearInterval(this)
             return;
         }
 
         previousMessageID = messageID
 
-        messageID = await sendPostController(marketData, vs_currency, chatId)
+        messageID = await sendPostController(marketData, vs_currency, channelId)
 
-        if (previousMessageID !== -1) {
-            await telegram.deleteMessage(chatId, previousMessageID)
+        for(let i = previousMessageID; i < messageID && previousMessageID !== -1; i++){
+            await telegram.deleteMessage(channelId, i)
         }
 
         timer++;
         if (timer === 12) {
             timer = 0
-            let title = (await telegram.getChat(chatId)).title
             if (percentage > 0) {
                 let newTitle = `🟢 ${currency.toUpperCase()} ${currentCurrency}$ ⬆️ (+${percentage}%|24h)`
-                if(title !== newTitle){
-                    await telegram.setChatTitle(chatId, newTitle)
-                        .then(() => telegram.deleteMessage(chatId, messageID+1))
-                }
+                    await telegram.setChatTitle(channelId, newTitle)
             } else {
                 let newTitle = `🔴 ${currency.toUpperCase()} ${currentCurrency}$ ⬇️️(${percentage}%|24h)`
-                if(title !== newTitle){
-                    await telegram.setChatTitle(chatId, newTitle)
-                        .then(() => telegram.deleteMessage(chatId, messageID+1))
-                }
+                await telegram.setChatTitle(channelId, newTitle)
             }
         }
     }, 5000);
