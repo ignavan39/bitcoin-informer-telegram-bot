@@ -24,6 +24,8 @@ const mainLoop = async (currency, vs_currency, channelId) => {
 
     let percentage = marketData.percentage
     let currentCurrency = marketData.price
+    let prevCurrency = marketData.price
+    let nowPercentage = -1
     let previousMessageID = -1
     let messageID = -1
     let timer = 0
@@ -31,6 +33,7 @@ const mainLoop = async (currency, vs_currency, channelId) => {
     setInterval(async () => {
         marketData = await getCurrency(await getIdCurrency(currency), vs_currency);
         percentage = marketData.percentage.toFixed(2)
+
         currentCurrency = marketData.price
 
         if (!marketData) {
@@ -50,14 +53,15 @@ const mainLoop = async (currency, vs_currency, channelId) => {
         timer++;
         if (timer === 12) {
             timer = 0
-            if (percentage > 0) {
-                let newTitle = `🟢 ${currency.toUpperCase()} ${currentCurrency}$ ⬆️ (+${percentage}%|24h)`
-                    await telegram.setChatTitle(channelId, newTitle)
-            } else {
-                let newTitle = `🔴 ${currency.toUpperCase()} ${currentCurrency}$ ⬇️️(${percentage}%|24h)`
+            if(prevCurrency !== currentCurrency){
+                nowPercentage = (currentCurrency/prevCurrency - 1)
+                let newTitle = `${nowPercentage > 0 ? '🟢': '🔴'}${currency.toUpperCase()} ${currentCurrency}$ ` +
+                `${percentage > 0 ? `⬆️ (+${percentage}`: `⬇️(${percentage}`}%|24h)`
                 await telegram.setChatTitle(channelId, newTitle)
+                prevCurrency = currentCurrency
             }
         }
+
     }, 5000);
 };
 
