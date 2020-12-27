@@ -5,15 +5,19 @@
 ### How to start ?
 
 Clone this repo or fork
+
 ```
 $ yarn
 ```
-or 
+
+or
+
 ```
 $ npm install
 ```
 
 #### Development :
+
 ```
 $ yarn start:dev
 ```
@@ -25,14 +29,13 @@ sh deploy.sh
 $ yarn start
 ```
 
-
 ### Test
 
 ```
 yarn test
 ```
 
-### Reload 
+### Reload
 
 ```
 yarn reload
