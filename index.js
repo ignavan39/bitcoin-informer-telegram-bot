@@ -15,7 +15,7 @@ const job = new CronJob('37 18 * * *', async () => {
 })
 
 bot.hears(/(\w+) vs (\w+)/, ctx => {
-
+    console.log(ctx.update.message.forward_from_chat.id)
     let chatId =  ctx.update.message.forward_from_chat.id
     if(ctx.message.from.id === adminId ){
         mainLoop(ctx.match[1], ctx.match[2], chatId)

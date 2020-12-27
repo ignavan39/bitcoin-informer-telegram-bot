@@ -47,9 +47,9 @@ const mainLoop = async (currency, vs_currency, chatId) => {
             await telegram.deleteMessage(chatId, previousMessageID)
         }
 
-        timer++;
-        if (timer === 12) {
-            timer = 0
+       // timer++;
+      //  if (timer === 12) {
+        //    timer = 0
             let title = (await telegram.getChat(chatId)).title
             if (percentage > 0) {
                 let newTitle = `🟢 ${currency.toUpperCase()} ${currentCurrency}$ ⬆️ (+${percentage}%|24h)`
@@ -64,7 +64,7 @@ const mainLoop = async (currency, vs_currency, chatId) => {
                         .then(() => telegram.deleteMessage(chatId, messageID+1))
                 }
             }
-        }
+     //   }
     }, 5000);
 };
 
