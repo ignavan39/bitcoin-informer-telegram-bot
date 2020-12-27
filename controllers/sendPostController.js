@@ -11,11 +11,9 @@ Market Cap Rank #${info.allInfo.market_cap_rank}
 ——————————————
 24h Low/ 24h High
 $${info.allInfo.low_24h[vsCurrency]}/$${info.allInfo.high_24h[vsCurrency]}
-7d Low / 7d High 
-$${info.allInfo.low_24h[vsCurrency]}/$${info.allInfo.high_24h[vsCurrency]}  
-`
-        )
+`)
         .then((ctx) => ctx.message_id);
 };
+
 
 module.exports = sendPostController;
