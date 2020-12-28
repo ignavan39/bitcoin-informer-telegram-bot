@@ -1,7 +1,7 @@
 
 const { saveData, getData } = require("../common/savedata");
 const { checkInAllCoins,
-    checkInVsCurrency } = require("../servicies/checkExsistCurrency");
+    checkInVsCurrency } = require("../servicies/check.service");
 const { getAllCoins } = require("../servicies/getInfo");
 const { ALL_COINS } = require("../types/keys");
 
