@@ -1,8 +1,8 @@
-const {telegram} = require("./config/config");
-const {bot} = require("./config/config")
-const {mainLoop} = require("./controllers/setTitle.controller");
-const {CronJob} = require("cron");
-const {adminId} = require('./config/config')
+const { telegram } = require("./config/config");
+const { bot } = require("./config/config");
+const { mainLoop } = require("./controllers/setTitle.controller");
+const { CronJob } = require("cron");
+const { adminId } = require("./config/config");
 
 //59 10 * * *
 /*const job = new CronJob('37 18 * * *', async () => {
@@ -23,6 +23,6 @@ bot.hears(/(\w+) vs (\w+)/, (ctx) => {
   }
 });
 
-bot.launch()
+bot.launch();
 
 //job.start()
