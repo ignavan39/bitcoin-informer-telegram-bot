@@ -6,7 +6,6 @@ const checkAllCoinsService = (allCoins,findCoin) => {
 }
 
 const checkAllVsCurrencySercice = (allVsCurrency,findCurrency) => {
-    console.log(allVsCurrency)
     if(!allVsCurrency.find((item) => item === findCurrency)){
         console.log(' Валюта не найдена')
         throw new 'Вторая валюта не найдена'
