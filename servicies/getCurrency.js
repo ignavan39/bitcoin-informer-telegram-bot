@@ -5,9 +5,10 @@ const getCurrency = async (currency_id, vsCurrency) => {
         .then((res) => res.json())
         .then((res) => ({
             name: res.name,
-            price: res.market_data.current_price[vsCurrency],
             percentage: res.market_data.price_change_percentage_24h_in_currency[vsCurrency],
-            allInfo: {...res.market_data}
+            cap_place: res.market_data.market_cap_rank,
+            trading_volume:res.market_data.total_volume[vsCurrency],
+            cap: res.market_data.market_cap[vsCurrency]
         }))
 };
 
