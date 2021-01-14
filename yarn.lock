@@ -4050,10 +4050,10 @@ symbol-tree@^3.2.4:
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
   integrity sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==
 
-telegraf@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/telegraf/-/telegraf-4.0.0.tgz#c238feff20f6415183df08715bfd1d0c7a90e150"
-  integrity sha512-e4m9uJuAzzKe1gNUOn3z3NTLscfteV4GE4la5pfWFbm75OLWK3cp/qvz7Evy4oPpvc/bPlcDCyNgXnk4n2TBcw==
+telegraf@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/telegraf/-/telegraf-4.0.1.tgz#58393c56ab29c19c7cdf2cce2bcdd39d24dd5974"
+  integrity sha512-kpl3vFDnIjlGxDuzNq3McUnJo9jGOlJEYtBeDPZc0Zvx878HFSO64uJeJ2HW6Tg3/76xh3dX77B7IdTGjuTOWA==
   dependencies:
     abort-controller "^3.0.0"
     debug "^4.3.1"
