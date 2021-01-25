@@ -1,9 +1,7 @@
-const { getData } = require("../api_handler/get_pairs")
+const { getData } = require("../api_handler/get_pairs");
 
-const mainLoop = async(coin,channelId) => {
-    const data = await getData(coin);
-    
-    setInterval(()=>{
+const mainLoop = async (coin, channelId) => {
+  const data = await getData(coin);
 
-    },3000)
-}
+  setInterval(() => {}, 3000);
+};
