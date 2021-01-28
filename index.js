@@ -7,9 +7,9 @@ bot.hears(/(\w+) vs (\w+)/, (ctx) => {
     if (!ctx.update.message.forward_from_chat) {
       ctx.reply("Перешлите сообщение из нужного канала");
     } else {
-      let channelId = ctx.update.message.forward_from_chat.id
-      try{
-        mainLoop(ctx.match[1], ctx.match[2], channelId)
+      let channelId = ctx.update.message.forward_from_chat.id;
+      try {
+        mainLoop(ctx.match[1], ctx.match[2], channelId);
       } catch {
         ctx.reply("Такой валюты нет");
       }
