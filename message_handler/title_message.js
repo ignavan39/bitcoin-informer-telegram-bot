@@ -6,7 +6,7 @@ const sendTitle = async (coin, data, channelId) => {
   ` (${percent24h > 0 ? '⬆️' : '⬇️'}${percent24h.toFixed(2)}%|24h)`
 
   return bot.telegram.sendMessage(channelId, newTitle).then(ctx => 
-    ({message_id:ctx.message_id, text:ctx.text}))
+    ({message_id:ctx.message_id, text:newTitle}))
 }
 
 const editTitle = async (coin, data, channelId, prevMessageData) => {
@@ -15,8 +15,9 @@ const editTitle = async (coin, data, channelId, prevMessageData) => {
   ` (${percent24h > 0 ? '⬆️' : '⬇️'}${percent24h.toFixed(2)}%|24h)`
   if(newTitle !== prevMessageData.text){
     return bot.telegram.editMessageText(channelId, prevMessageData.message_id, undefined, newTitle)
+    .then(ctx =>({message_id:ctx.message_id, text:newTitle}))
   }
-
+  return prevMessageData
 }
 
 module.exports = {

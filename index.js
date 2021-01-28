@@ -1,4 +1,4 @@
-const { bot, telegram } = require("./config/config");
+const { bot } = require("./config/config");
 const { adminId } = require("./config/config");
 const { mainLoop } = require('./message_handler/main_loop')
 
@@ -9,7 +9,7 @@ bot.hears(/(\w+) vs (\w+)/, (ctx) => {
     } else {
       let channelId = ctx.update.message.forward_from_chat.id
       try{
-        mainLoop(ctx.match[1], channelId)
+        mainLoop(ctx.match[1], ctx.match[2], channelId)
       } catch {
         ctx.reply('Такой валюты нет')
       }
