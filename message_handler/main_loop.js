@@ -8,7 +8,7 @@ const mainLoop = async (coin, vsCurrency, channelId) => {
   try{
     checkCurrency(coin, vsCurrency)
   } catch {
-    throw 'Нет такой валюты'
+    throw "Нет такой валюты";
   }
   let coinInfo = await getData(coin)
   let prevMessageData = await sendTitle(coin, coinInfo, channelId)
@@ -22,9 +22,8 @@ const mainLoop = async (coin, vsCurrency, channelId) => {
     postInfo = await getPostInfo(coin, vsCurrency);
     prevPostId = await editPost(postInfo, coinInfo, channelId, prevPostId)
   }, 6000)
-
 };
 
 module.exports = {
-    mainLoop
-}
+  mainLoop,
+};

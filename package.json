@@ -14,12 +14,9 @@
   "author": "kitt3911 <ivanignatenko28@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "coingecko-api": "^1.0.10",
-    "cron": "^1.8.2",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "node-fetch": "^2.6.1",
-    "redis": "^3.0.2",
     "telegraf": "^4.0.1"
   },
   "devDependencies": {

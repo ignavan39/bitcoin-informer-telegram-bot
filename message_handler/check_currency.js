@@ -14,5 +14,5 @@ const checkCurrency = async (coin, vsCurrency) => {
 }
 
 module.exports = {
-    checkCurrency
-}
+  checkCurrency,
+};
