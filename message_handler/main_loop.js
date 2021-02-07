@@ -18,8 +18,10 @@ const mainLoop = async (coin, vsCurrency, channelId) => {
 
   setInterval(async () => {
     coinInfo = await getData(coin);
-    prevMessageData = await editTitle(coin,coinInfo,
-    channelId,
+    prevMessageData = await editTitle(
+      coin,
+      coinInfo,
+      channelId,
       prevMessageData
     );
     postInfo = await getPostInfo(coin, vsCurrency);
