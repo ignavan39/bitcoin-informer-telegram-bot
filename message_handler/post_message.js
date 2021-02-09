@@ -13,8 +13,8 @@ $${coinInfo.low}/$${coinInfo.high}`
 
   return bot.telegram
     .sendMessage(channelId, postMessage)
-    .then((ctx) => ({message_id:ctx.message_id, text: ctx.text}))
-}
+    .then((ctx) => ({ message_id: ctx.message_id, text: ctx.text }));
+};
 
 const editPost = async (postInfo, coinInfo, channelId, prevPostData) => {
   let postMessage = `${
@@ -30,8 +30,8 @@ $${coinInfo.low}/$${coinInfo.high}`
     return await bot.telegram.editMessageText(channelId, prevPostData.message_id, undefined, postMessage)
       .then((ctx) => ({ message_id: ctx.message_id, text: postMessage }))
   }
-  return prevPostData
-}
+  return prevPostData;
+};
 
 module.exports = {
   sendPost,
