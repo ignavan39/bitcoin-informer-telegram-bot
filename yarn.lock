@@ -922,6 +922,24 @@ bser@2.1.1:
   dependencies:
     node-int64 "^0.4.0"
 
+buffer-alloc-unsafe@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/buffer-alloc-unsafe/-/buffer-alloc-unsafe-1.1.0.tgz#bd7dc26ae2972d0eda253be061dba992349c19f0"
+  integrity sha512-TEM2iMIEQdJ2yjPJoSIsldnleVaAk1oW3DBVUykyOLsEsFmEc9kn+SFFPz+gl54KQNxlDnAwCXosOS9Okx2xAg==
+
+buffer-alloc@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/buffer-alloc/-/buffer-alloc-1.2.0.tgz#890dd90d923a873e08e10e5fd51a57e5b7cce0ec"
+  integrity sha512-CFsHQgjtW1UChdXgbyJGtnm+O/uLQeZdtbDo8mfUgYXCHSM1wgrVxXm6bSyrUuErEb+4sYVGCzASBRot7zyrow==
+  dependencies:
+    buffer-alloc-unsafe "^1.1.0"
+    buffer-fill "^1.0.0"
+
+buffer-fill@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/buffer-fill/-/buffer-fill-1.0.0.tgz#f8f78b76789888ef39f205cd637f68e702122b2c"
+  integrity sha1-+PeLdniYiO858gXNY39o5wISKyw=
+
 buffer-from@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
@@ -3604,6 +3622,13 @@ safe-buffer@^5.0.1, safe-buffer@^5.1.2:
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.2.1.tgz#1eaf9fa9bdb1fdd4ec75f58f9cdb4e6b7827eec6"
   integrity sha512-rp3So07KcdmmKbGvgaNxQSJr7bGVSVk5S9Eq1F+ppbRo70+YeaDxkw5Dd8NPN+GD6bjnYm2VuPuCXmpuYvmCXQ==
 
+safe-compare@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/safe-compare/-/safe-compare-1.1.4.tgz#5e0128538a82820e2e9250cd78e45da6786ba593"
+  integrity sha512-b9wZ986HHCo/HbKrRpBJb2kqXMK9CEWIE1egeEvZsYn69ay3kdfl9nG3RyOcR+jInTDf7a86WQ1d4VJX7goSSQ==
+  dependencies:
+    buffer-alloc "^1.2.0"
+
 safe-regex@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/safe-regex/-/safe-regex-1.1.0.tgz#40a3669f3b077d1e943d44629e157dd48023bf2e"
@@ -3994,10 +4019,10 @@ symbol-tree@^3.2.4:
   resolved "https://registry.yarnpkg.com/symbol-tree/-/symbol-tree-3.2.4.tgz#430637d248ba77e078883951fb9aa0eed7c63fa2"
   integrity sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==
 
-telegraf@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/telegraf/-/telegraf-4.0.3.tgz#309ec4cbc7b4ac0cc32d4f39ac1454103c60fc5a"
-  integrity sha512-QWn9r7IAX4C0kHiP2skieI4pry1SO3YGe2n34a3ymqENeu6bJposut6uR1zLNzOhSPvAxqdlO59bJWGXnADqHQ==
+telegraf@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/telegraf/-/telegraf-4.1.2.tgz#bfc1e798a2018cf7b6804ab07ee230161cee01b5"
+  integrity sha512-YZljmryOhcZgrRWU28AV7UhZ3y+jKRwPwB49PSDDmW7tKtQHrSLBkW0pCoLniDlQVz+ICBGCWXZlHfqDkQ2iNQ==
   dependencies:
     abort-controller "^3.0.0"
     debug "^4.3.1"
@@ -4005,8 +4030,9 @@ telegraf@^4.0.3:
     module-alias "^2.2.2"
     node-fetch "^2.6.1"
     p-timeout "^4.1.0"
+    safe-compare "^1.1.4"
     sandwich-stream "^2.0.2"
-    typegram "^3.1.4"
+    typegram "^3.1.10"
 
 term-size@^2.1.0:
   version "2.2.1"
@@ -4172,10 +4198,10 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typegram@^3.1.4:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/typegram/-/typegram-3.1.4.tgz#45c443987ce573c96a9ec8ba4958275e31e3af06"
-  integrity sha512-AsYxLLynwBgeUJNU+3oSYNPSB3bwb/uyzrEPvrPwC0HXCYhW+otNV5q4T8Sb43SQSAP71hWC8EzBgDtlGGBx0A==
+typegram@^3.1.10:
+  version "3.1.10"
+  resolved "https://registry.yarnpkg.com/typegram/-/typegram-3.1.10.tgz#a0dcea705ef6386f8476dcd511a43d763d122b55"
+  integrity sha512-VfsuVP4uqk9yllRpaGp9yFpzvLKXghFCOSc3TVi+fy1IL2Bi4z2gJ9rMgVSSug4pWQP8Ui7Isvl14yYV8VEWaQ==
 
 undefsafe@^2.0.3:
   version "2.0.3"
